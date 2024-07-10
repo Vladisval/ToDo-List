@@ -24,5 +24,9 @@ export const ToDoList = () => {
         More
       </Button>
     </>
+    <div>
+      {!!data?.length &&
+        data.map((toDo) => <ToDoItem key={toDo.id} todo={toDo} />)}
+    </div>
   );
 };
