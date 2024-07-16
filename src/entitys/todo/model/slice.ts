@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IParams } from "./types.ts";
 
-const initialState = {
+const initialState: IParams = {
   page: 1,
+  limit: 10,
 };
 
 const todoListSlice = createSlice({
@@ -9,15 +11,19 @@ const todoListSlice = createSlice({
   initialState,
   selectors: {
     getCurrentPage: (sliceState) => sliceState.page,
+    getLimitValue: (sliceState) => sliceState.limit,
   },
   reducers: {
-    increment: (state) => {
+    incrementPage: (state) => {
       state.page += 1;
+    },
+    changeLimit: (state, action) => {
+      state.limit = action.payload;
     },
   },
 });
 
-export const { increment } = todoListSlice.actions;
-export const { getCurrentPage } = todoListSlice.selectors;
+export const { incrementPage, changeLimit } = todoListSlice.actions;
+export const { getCurrentPage, getLimitValue } = todoListSlice.selectors;
 
 export default todoListSlice.reducer;

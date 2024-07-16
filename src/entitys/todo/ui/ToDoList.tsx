@@ -2,20 +2,25 @@ import ToDoItem from "./ToDoItem.tsx";
 import { todoApi } from "../model/api.ts";
 import { Button, LinearProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentPage, increment } from "../model/slice.ts";
+import {
+  getCurrentPage,
+  getLimitValue,
+  incrementPage,
+} from "../model/slice.ts";
 import {
   getCompleted,
   getTitle,
-} from "../../../features/filters/search/model/filtersSlice.ts";
+} from "../../../features/filters/model/filtersSlice.ts";
 
 export const ToDoList = () => {
   const page = useSelector(getCurrentPage);
+  const limit = useSelector(getLimitValue);
   const dispatch = useDispatch();
-  let { data } = todoApi.useTodoListQuery(page);
-  const { isFetching } = todoApi.useTodoListQuery(page);
+  let { data } = todoApi.useTodoListQuery({ limit, page });
+  const { isFetching } = todoApi.useTodoListQuery({ limit, page });
   const valueInput = useSelector(getTitle);
   const valueCompleted = useSelector(getCompleted);
-
+  console.log(data);
   if (valueCompleted === "Completed") {
     data = data?.filter((toDo) => !toDo.completed);
   }
@@ -44,7 +49,7 @@ export const ToDoList = () => {
             borderRadius: "5px",
             marginTop: "1rem",
           }}
-          onClick={() => dispatch(increment())}
+          onClick={() => dispatch(incrementPage())}
         >
           More Todos
         </Button>

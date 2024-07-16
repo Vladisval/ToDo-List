@@ -6,7 +6,7 @@ export interface TodoModel {
 }
 
 export interface IParams {
-  // limit: number;
+  limit: number;
   page: number;
   // totalCount: number;
 }

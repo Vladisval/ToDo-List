@@ -4,6 +4,6 @@ export const useInput = (initialState = "") => {
   const [value, setValue] = useState(initialState);
   return {
     value,
-    onChange: (e) => setValue(e.target.value),
+    onChange: (event: any) => setValue(event.target.value),
   };
 };
