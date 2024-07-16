@@ -4,3 +4,9 @@ export interface TodoModel {
   title: string;
   completed: boolean;
 }
+
+export interface IParams {
+  // limit: number;
+  page: number;
+  // totalCount: number;
+}
