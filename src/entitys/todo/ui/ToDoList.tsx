@@ -20,7 +20,6 @@ export const ToDoList = () => {
   const { isFetching } = todoApi.useTodoListQuery({ limit, page });
   const valueInput = useSelector(getTitle);
   const valueCompleted = useSelector(getCompleted);
-  console.log(data);
   if (valueCompleted === "Completed") {
     data = data?.filter((toDo) => !toDo.completed);
   }
