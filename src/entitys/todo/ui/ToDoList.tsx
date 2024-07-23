@@ -1,6 +1,6 @@
 import ToDoItem from "./ToDoItem.tsx";
 import { todoApi } from "../model/api.ts";
-import { Button, LinearProgress } from "@mui/material";
+import { Button, Container, LinearProgress } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCurrentPage,
@@ -21,13 +21,13 @@ export const ToDoList = () => {
   const valueInput = useSelector(getTitle);
   const valueCompleted = useSelector(getCompleted);
   if (valueCompleted === "Completed") {
-    data = data?.filter((toDo) => !toDo.completed);
-  }
-  if (valueCompleted === "Uncompleted") {
     data = data?.filter((toDo) => toDo.completed);
   }
+  if (valueCompleted === "Uncompleted") {
+    data = data?.filter((toDo) => !toDo.completed);
+  }
   return (
-    <div>
+    <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column" }}>
       {!!data?.length &&
         data
           ?.filter((toDo) =>
@@ -53,6 +53,6 @@ export const ToDoList = () => {
           More Todos
         </Button>
       )}
-    </div>
+    </Container>
   );
 };

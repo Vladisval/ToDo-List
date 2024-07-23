@@ -8,5 +8,10 @@ export interface TodoModel {
 export interface IParams {
   limit: number;
   page: number;
-  // totalCount: number;
 }
+
+export interface ICreateTodo {
+  textValue: string;
+}
+
+export type TState = IParams & ICreateTodo;

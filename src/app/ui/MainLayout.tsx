@@ -2,13 +2,12 @@ import { Container } from "@mui/material";
 import { PropsWithChildren } from "react";
 import Header from "../../widgets/header/ui/Header.tsx";
 
-
-const MainLayout = ({children}: PropsWithChildren) => {
+const MainLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <Header/>
+      <Header />
 
-      <Container component='main' maxWidth='md'>
+      <Container component="main" maxWidth="lg">
         {children}
       </Container>
     </>

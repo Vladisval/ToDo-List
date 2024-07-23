@@ -40,8 +40,8 @@ const ToDoItem = ({ todo }: Props) => {
 
   return (
     <Box className={classes.root}>
-      <Checkbox color="default" checked={!todo.completed} />
-      <Box className={!todo.completed ? classes.done : classes.task}>
+      <Checkbox color="default" checked={todo.completed} />
+      <Box className={todo.completed ? classes.done : classes.task}>
         {todo.id}. {todo.title}
       </Box>
       <CreateOutlinedIcon sx={{ marginRight: "1rem" }} />
