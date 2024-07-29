@@ -13,5 +13,3 @@ export interface IParams {
 export interface ICreateTodo {
   textValue: string;
 }
-
-export type TState = IParams & ICreateTodo;

@@ -11,6 +11,7 @@ import {
   getCompleted,
   getTitle,
 } from "../../../features/filters/model/filtersSlice.ts";
+import { TodoModel } from "../model/types.ts";
 
 export const ToDoList = () => {
   const page = useSelector(getCurrentPage);
@@ -21,19 +22,19 @@ export const ToDoList = () => {
   const valueInput = useSelector(getTitle);
   const valueCompleted = useSelector(getCompleted);
   if (valueCompleted === "Completed") {
-    data = data?.filter((toDo) => toDo.completed);
+    data = data?.filter((toDo: TodoModel) => toDo.completed);
   }
   if (valueCompleted === "Uncompleted") {
-    data = data?.filter((toDo) => !toDo.completed);
+    data = data?.filter((toDo: TodoModel) => !toDo.completed);
   }
   return (
     <Container maxWidth="md" sx={{ display: "flex", flexDirection: "column" }}>
       {!!data?.length &&
         data
-          ?.filter((toDo) =>
+          ?.filter((toDo: TodoModel) =>
             toDo.title.toLowerCase().includes(valueInput.toLowerCase()),
           )
-          .map((toDo) => <ToDoItem key={toDo.id} todo={toDo} />)}
+          .map((toDo: TodoModel) => <ToDoItem key={toDo.id} todo={toDo} />)}
       {isFetching && (
         <LinearProgress sx={{ marginTop: "3rem", height: "5px" }} />
       )}

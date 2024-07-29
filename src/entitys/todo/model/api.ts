@@ -22,6 +22,15 @@ export const todoApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: [{ type: "Todo", id: "LIST" }],
     }),
+    toggleCompleted: mutation<TodoModel, TodoModel>({
+      query: (todo) => ({
+        url: `/todos/${todo.id}`,
+        method: "PUT",
+        body: todo,
+      }),
+      invalidatesTags: [{ type: "Todo", id: "LIST" }],
+    }),
   }),
+
   overrideExisting: true,
 });

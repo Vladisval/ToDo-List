@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TState } from "./types.ts";
+import { IParams } from "./types.ts";
 
-const initialState: TState = {
+const initialState: IParams = {
   page: 1,
-  limit: 120,
-  textValue: "",
+  limit: 20,
 };
 
 const todoListSlice = createSlice({
@@ -13,7 +12,6 @@ const todoListSlice = createSlice({
   selectors: {
     getCurrentPage: (sliceState) => sliceState.page,
     getLimitValue: (sliceState) => sliceState.limit,
-    getTextValue: (sliceState) => sliceState.textValue,
   },
   reducers: {
     incrementPage: (state) => {
@@ -22,15 +20,10 @@ const todoListSlice = createSlice({
     changeLimit: (state, action) => {
       state.limit = action.payload;
     },
-    textValueChange: (state, action) => {
-      state.textValue = action.payload;
-    },
   },
 });
 
-export const { incrementPage, changeLimit, textValueChange } =
-  todoListSlice.actions;
-export const { getCurrentPage, getLimitValue, getTextValue } =
-  todoListSlice.selectors;
+export const { incrementPage, changeLimit } = todoListSlice.actions;
+export const { getCurrentPage, getLimitValue } = todoListSlice.selectors;
 
 export default todoListSlice.reducer;

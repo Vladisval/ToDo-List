@@ -3,6 +3,7 @@ import { Box, Checkbox } from "@mui/material";
 import makeStyles from "@mui/styles/makeStyles";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import { todoApi } from "../model/api.ts";
 
 interface Props {
   todo: TodoModel;
@@ -33,14 +34,14 @@ const useStyles = makeStyles(() => ({
 
 const ToDoItem = ({ todo }: Props) => {
   const classes = useStyles();
-  // const [isDone, setIsDone] = useState<boolean>(false);
-  // const toggle = () => {
-  //   setIsDone((prevState) => !prevState);
-  // };
+  const [updateCompleted, {}] = todoApi.useToggleCompletedMutation();
+  const toggle = async () => {
+    await updateCompleted({ ...todo, completed: !todo.completed });
+  };
 
   return (
     <Box className={classes.root}>
-      <Checkbox color="default" checked={todo.completed} />
+      <Checkbox color="default" checked={todo.completed} onChange={toggle} />
       <Box className={todo.completed ? classes.done : classes.task}>
         {todo.id}. {todo.title}
       </Box>

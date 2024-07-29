@@ -9,7 +9,7 @@ import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useInput } from "../../../features/filters/model/useInput.ts";
 import { useDispatch, useSelector } from "react-redux";
-import { getTextValue, textValueChange } from "../model/slice.ts";
+import { getTextValue, textValueChange } from "../model/itemSlice.ts";
 import { todoApi } from "../model/api.ts";
 import { TodoModel } from "../model/types.ts";
 
