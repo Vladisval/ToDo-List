@@ -4,6 +4,8 @@ import makeStyles from "@mui/styles/makeStyles";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { todoApi } from "../model/api.ts";
+import UpdateToDo from "./UpdateToDo.tsx";
+import { useState } from "react";
 
 interface Props {
   todo: TodoModel;
@@ -33,8 +35,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const ToDoItem = ({ todo }: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const classes = useStyles();
-  const [updateCompleted, {}] = todoApi.useToggleCompletedMutation();
+  const [updateCompleted] = todoApi.useToggleCompletedMutation();
+  const [removeTodo] = todoApi.useRemoveTodoMutation();
+
   const toggle = async () => {
     await updateCompleted({ ...todo, completed: !todo.completed });
   };
@@ -45,8 +51,24 @@ const ToDoItem = ({ todo }: Props) => {
       <Box className={todo.completed ? classes.done : classes.task}>
         {todo.id}. {todo.title}
       </Box>
-      <CreateOutlinedIcon sx={{ marginRight: "1rem" }} />
-      <DeleteOutlineOutlinedIcon />
+      <CreateOutlinedIcon
+        sx={{ marginRight: "1rem" }}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      />
+      <DeleteOutlineOutlinedIcon
+        onClick={() => {
+          removeTodo(todo);
+        }}
+      />
+      <UpdateToDo
+        data={todo}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+        isOpen={isOpen}
+      />
     </Box>
   );
 };

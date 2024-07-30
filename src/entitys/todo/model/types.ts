@@ -12,4 +12,5 @@ export interface IParams {
 
 export interface ICreateTodo {
   textValue: string;
+  isOpeningUpdateModal: boolean;
 }

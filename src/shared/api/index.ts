@@ -5,4 +5,5 @@ export const baseApi = createApi({
     baseUrl: "http://localhost:3000/",
   }),
   endpoints: () => ({}),
+  tagTypes: ["Todo"],
 });

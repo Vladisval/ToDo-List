@@ -8,17 +8,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useInput } from "../../../features/filters/model/useInput.ts";
-import { useDispatch, useSelector } from "react-redux";
-import { getTextValue, textValueChange } from "../model/itemSlice.ts";
 import { todoApi } from "../model/api.ts";
 import { TodoModel } from "../model/types.ts";
 
 export default function CreateToDo() {
   const [open, setOpen] = React.useState(false);
   const input = useInput();
-  const dispatch = useDispatch();
-  const textValue = useSelector(getTextValue);
-  const [createTodo, {}] = todoApi.useCreateTodoMutation();
+
+  const [createTodo] = todoApi.useCreateTodoMutation();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,22 +23,22 @@ export default function CreateToDo() {
 
   const handleClose = () => {
     setOpen(false);
+    input.onChange({ target: { value: "" } });
   };
 
   const handleCreate = async () => {
-    dispatch(textValueChange(input.value));
     await createTodo({ title: input.value, completed: false } as TodoModel);
     handleClose();
   };
-
   return (
     <React.Fragment>
       <Fab
         color="default"
         aria-label="add"
-        sx={{ position: "fixed", bottom: "2rem", right: "25rem" }}
+        sx={{ position: "fixed", bottom: "2rem", right: "20%" }}
+        onClick={handleClickOpen}
       >
-        <AddIcon onClick={handleClickOpen} />
+        <AddIcon />
       </Fab>
 
       <Dialog open={open} onClose={handleClose}>
