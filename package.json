@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server -w serverToDo/db.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -20,6 +21,7 @@
     "@mui/system": "^5.16.0",
     "@reduxjs/toolkit": "^2.2.6",
     "clsx": "^2.1.1",
+    "json-server": "^1.0.0-beta.3",
     "prettier": "^3.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -41,7 +41,7 @@ export default function CreateToDo() {
         <AddIcon />
       </Fab>
 
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog maxWidth="md" open={open} onClose={handleClose}>
         <DialogContent>
           <DialogContentText>Create your ToDo</DialogContentText>
           <TextField
